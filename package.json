@@ -4,13 +4,28 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "lint:js": "eslint --cache --cache-location=.cache/eslint --ext .js,.jsx,.ts,.tsx --report-unused-disable-directives .",
+    "lint:package": "sort-package-json"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "pnpm lint:js --fix"
+    ],
+    "package.json": [
+      "pnpm lint:package"
+    ]
   },
   "devDependencies": {
+    "@commitlint/cli": "^18.6.0",
+    "@commitlint/config-conventional": "^18.6.0",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "husky": "^9.0.10",
+    "lint-staged": "^15.2.2",
     "prettier": "^3.1.1",
+    "sort-package-json": "^2.7.0",
     "turbo": "latest"
   },
   "packageManager": "pnpm@8.9.0",
