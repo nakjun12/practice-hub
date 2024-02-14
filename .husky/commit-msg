@@ -17,3 +17,4 @@ else
   echo "❌ Commit message does not meet the convention ❌"
   exit 1
 fi
+
